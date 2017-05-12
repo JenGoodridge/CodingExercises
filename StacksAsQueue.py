@@ -1,3 +1,4 @@
+# Take two stacks and have them act as a Queue
 class Item():
     def __init__(self, data, next=None):
         self.data = data
