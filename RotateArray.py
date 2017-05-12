@@ -1,4 +1,4 @@
-# This function takes a list and an int, n,
+# This function takes a list of ints, and an int, n,
 # and takes n elements from the end of the list,
 # and moves them to the beginning of the list.
 
