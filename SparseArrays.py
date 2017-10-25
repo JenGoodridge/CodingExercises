@@ -1,4 +1,6 @@
 #https://www.hackerrank.com/challenges/sparse-arrays
+#Given a file of strings determine how many times the first batch of strings appear in the second batch
+
 # Handling file input
 import fileinput
 stringArray = []
