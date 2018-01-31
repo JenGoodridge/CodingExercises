@@ -1,18 +1,20 @@
-# Checks if there is a bisector in array that checks whether the sum
-# of the left side of the bisector is equal to the right side of the bisector
-
+# Checks if there is a bisector in array such that the sum of the left side of the bisector is equal to the right.
+# Bisector is defined as an element in the array that is not included in the sum
+import unittest
 
 def checkforbisector(array):
-    for index in array:
-        x = len(array)
-        a = array[0: index]
-        b = array[index + 1: x]
-        if sum(a) == sum(b):
-            print("a is: " + str(a) + " b is " + str(b))
-            print("Yes")
-            break
-        else:
-            continue
+    for i in range(0, len(array)):
+        if sum(array[0: i]) == sum(array[i + 1: len(array) + 1]):
+            return array[i]
+    return False
+        
 
-array = [1, 9, 1]
-checkforbisector(array)
+class Test(unittest.TestCase):
+    def test_checkforbisector(self):
+        self.assertEqual(checkforbisector([]), False)
+        self.assertEqual(checkforbisector([1, 1, 7, 11, 42]), False)
+        self.assertEqual(checkforbisector([1, 2, 1]), 2)
+        self.assertEqual(checkforbisector([1, 2, 3, 5, 6]), 5)
+        self.assertEqual(checkforbisector([1, 2, 3, 3, 2, 1]), False)
+        
+unittest.main()
