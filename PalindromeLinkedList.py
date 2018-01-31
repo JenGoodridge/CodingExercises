@@ -1,6 +1,6 @@
 # Given a string and using linked lists
 # determine whether the string is a palindrome
-
+import unittest
 
 class Node:
     def __init__(self, data, next=None):
@@ -56,33 +56,53 @@ class LinkedList:
         return string + "]"
 
 
-class Palindrome():
-    def Palindrome_check(list1):
-        list2 = LinkedList()
-        current = list1.head
-        while current is not None:
-            list2.prepend(current.data)
-            current = current.next
-        print(list2)
-        current1 = list1.head
-        current2 = list2.head
-        while current1 is not None:
-            if current1.data is not current2.data:
-                return False
-                break
-            current1 = current1.next
-            current2 = current2.next
-        return True
 
-    list1 = LinkedList()
-    list1.append("a")
-    list1.append("b")
-    list1.append("a")
-    print(Palindrome_check(list1))
+def Palindrome_check(list1):
     list2 = LinkedList()
-    list2.append("a")
-    list2.append("a")
-    list2.append("q")
-    list2.append("w")
-    list2.append("t")
-    print(Palindrome_check(list2))
+    current = list1.head
+    while current is not None:
+        list2.prepend(current.data)
+        current = current.next
+    current1 = list1.head
+    current2 = list2.head
+    while current1 is not None:
+        if current1.data is not current2.data:
+            return False
+            break
+        current1 = current1.next
+        current2 = current2.next
+    return True
+
+
+
+# setup for tests 
+list1 = LinkedList()
+list2 = LinkedList()
+list3 = LinkedList()
+list4 = LinkedList()
+list1.append("a")
+list1.append("b")
+list1.append("a")
+list2.append("x")
+list2.append("x")
+list2.append("t")
+list2.append("z")
+list2.append("z")
+list3.append("")
+list4.append("r")
+list4.append("y")
+list4.append("i")
+list4.append("t")
+list4.append("t")
+list4.append("i")
+list4.append("y")
+list4.append("r")
+class Test(unittest.TestCase):
+    
+    def test_Palindrome_check(self):
+        self.assertEqual(Palindrome_check(list1), True)
+        self.assertEqual(Palindrome_check(list2), False)
+        self.assertEqual(Palindrome_check(list3), True)
+        self.assertEqual(Palindrome_check(list4), True)
+        
+unittest.main()
