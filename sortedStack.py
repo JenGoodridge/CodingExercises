@@ -1,13 +1,12 @@
 # Code a stack that sorts the integers within.
+import unittest
 class Item():
-
     def __init__(self, data, next=None):
         self.data = data
         self.next = next
 
 
 class Stack():
-
     def __init__(self):
         self.head = None
 
@@ -66,19 +65,47 @@ class Sorted_Stack():
 
     def isEmpty(self):
         return self.mainStack.isEmpty()
+    
+    def printStack(self):
+        string = "["
+        current = self.mainStack.head
+        while current is not None:
+            string += str(current.data)
+            current = current.next
+            if current is not None:
+                string += ","
+
+        return string + "]"
 
 
-class Test():
-    test = Sorted_Stack()
-    test.push(1)
-    test.push(5)
-    test.push(6)
-    test.push(9)
-    test.pop()
-    test.push(-3)
-    print(test.mainStack)
-    test.push(0)
-    test.pop()
-    test.push(-1)
-    test.pop()
-    print(test.mainStack)
+#setup for testing
+test = Sorted_Stack()
+test.push(1)
+test.push(5)
+test.push(6)
+test.push(9)
+test.pop()
+test.push(-3)
+test.push(0)
+test.pop()
+test.push(-1)
+
+
+
+class Test(unittest.TestCase):
+    def test_SortedStack(self):
+        self.assertEqual(test.printStack(), "[-1,0,5,6,9]")
+        test.pop()
+        test.push(5)
+        self.assertEqual(test.printStack(),"[0,5,5,6,9]")
+        test.push(7)
+        self.assertEqual(test.printStack(),"[0,5,5,6,7,9]")
+        test.pop()
+        test.pop()
+        test.pop()
+        self.assertEqual(test.printStack(),"[6,7,9]")
+        
+        
+unittest.main()
+    
+    

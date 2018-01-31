@@ -10,7 +10,6 @@ class OrderedCounter(Counter, OrderedDict):
     def __reduce__(self):
         return self.__class__, (OrderedDict(self),)
 class Main():
-    
     words = []
     for line in fileinput.input():
         if not fileinput.isfirstline(): 

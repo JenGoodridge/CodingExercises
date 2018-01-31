@@ -1,4 +1,5 @@
 # Take two stacks and have them act as a Queue
+import unittest
 class Item():
     def __init__(self, data, next=None):
         self.data = data
@@ -56,19 +57,23 @@ class StacksAsQueue():
         self.stack2.pop()
         self.stack1 = Stack()
 
-        print(self.stack2)
+        
 
     def peek(self):
-        return self.stack2.head
+        return self.stack2.head.data
 
-class Test():
+#setup for testing
+test = StacksAsQueue()
+test.add(0)
+test.add(1)
+test.add(2)
+test.add(3)
 
-    test = StacksAsQueue()
-    test.add(0)
-    test.add(1)
-    test.pop()
-    test.add(4)
-    test.add(5)
-    test.pop()
-    test.pop()
+class Test(unittest.TestCase):
+    def test_StacksAsQueue(self): 
+        self.assertEqual(test.pop(), None)
+        
+unittest.main()
+
+    
 
