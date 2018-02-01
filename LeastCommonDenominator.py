@@ -9,14 +9,12 @@ def convertFracts(list):
         denominators = []
         for l in list:
             denominators.append(l[1])
-
         denom = denominators[0] * denominators[1] // euclidsDivisor(denominators[0], denominators[1])
         for d in denominators:
             if d == denominators[0]:
                 continue
             else:
                 denom = denom * d // euclidsDivisor(denom, d)
-
         for fract in list:
             div = denom // fract[1]
             fract[0] = fract[0] * div
@@ -29,7 +27,6 @@ def euclidsDivisor(x, y):
         return y
     elif y is 0:
         return x
-
     else:
         if x > y:
             return euclidsDivisor(y, x % y)
@@ -39,8 +36,8 @@ def euclidsDivisor(x, y):
     
 class test(unittest.TestCase):
     def test_invertFracts(self):
-        self.assertEqual(convertFracts([[2,6]]), [[2,6]])
         self.assertEqual(convertFracts([[]]), [[]])
+        self.assertEqual(convertFracts([[2,6]]), [[2,6]])
         self.assertEqual(convertFracts([[5, 15], [4, 12]]), [[20, 60], [20, 60]])
         self.assertEqual(convertFracts([[1,2], [1,3], [1, 5]]), [[15,30],[10,30], [6,30]])
 
